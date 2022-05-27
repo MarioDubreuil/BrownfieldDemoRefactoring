@@ -20,13 +20,8 @@ namespace ConsoleUI
 
             List<TimeSheetEntry> timeSheets = LoadTimeSheets();
 
-            hoursWorked = TimeSheetProcessor.GetHoursWorkedForCompany(timeSheets, "Acme");
-            Console.WriteLine("Simulating Sending email to Acme");
-            Console.WriteLine("Your bill is $" + hoursWorked * 150 + " for the hours worked.");
-
-            hoursWorked = TimeSheetProcessor.GetHoursWorkedForCompany(timeSheets, "ABC");
-            Console.WriteLine("Simulating Sending email to ABC");
-            Console.WriteLine("Your bill is $" + hoursWorked * 125 + " for the hours worked.");
+            BillCustomer(timeSheets, "Acme", 150);
+            BillCustomer(timeSheets, "ABC", 125);
 
             hoursWorked = 0;
             for (i = 0; i < timeSheets.Count; i++)
