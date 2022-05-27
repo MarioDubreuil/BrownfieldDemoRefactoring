@@ -22,10 +22,7 @@ namespace ConsoleUI
             List<TimeSheetEntryModel> timeSheets = LoadTimeSheets();
             List<CustomerModel> customers = DataAccess.GetCustomers();
 
-            foreach (var customer in customers)
-            {
-                BillCustomer(timeSheets, customer);
-            }
+            customers.ForEach(c => BillCustomer(timeSheets, c));
 
             hoursWorked = 0;
             for (i = 0; i < timeSheets.Count; i++)
