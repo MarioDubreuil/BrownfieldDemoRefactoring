@@ -19,10 +19,13 @@ namespace ConsoleUI
             int i;
             double hoursWorked;
 
-            List<TimeSheetEntry> timeSheets = LoadTimeSheets();
+            List<TimeSheetEntryModel> timeSheets = LoadTimeSheets();
+            List<CustomerModel> customers = DataAccess.GetCustomers();
 
-            BillCustomer(timeSheets, "Acme", 150);
-            BillCustomer(timeSheets, "ABC", 125);
+            foreach (var customer in customers)
+            {
+                BillCustomer(timeSheets, customer);
+            }
 
             hoursWorked = 0;
             for (i = 0; i < timeSheets.Count; i++)
@@ -42,16 +45,16 @@ namespace ConsoleUI
             Console.ReadKey();
         }
 
-        private static void BillCustomer(List<TimeSheetEntry> timeSheets, string companyName, decimal hourlyRate)
+        private static void BillCustomer(List<TimeSheetEntryModel> timeSheets, CustomerModel customer)
         {
-            double hoursWorked = TimeSheetProcessor.GetHoursWorkedForCompany(timeSheets, companyName);
-            Console.WriteLine($"Simulating Sending email to {companyName}");
-            Console.WriteLine("Your bill is $" + (decimal)hoursWorked * hourlyRate + " for the hours worked.");
+            double hoursWorked = TimeSheetProcessor.GetHoursWorkedForCompany(timeSheets, customer.CustomerName);
+            Console.WriteLine($"Simulating Sending email to {customer.CustomerName}");
+            Console.WriteLine("Your bill is $" + (decimal)hoursWorked * customer.HourlyRateToBill + " for the hours worked.");
         }
 
-        private static List<TimeSheetEntry> LoadTimeSheets()
+        private static List<TimeSheetEntryModel> LoadTimeSheets()
         {
-            List<TimeSheetEntry> timeSheets = new List<TimeSheetEntry>();
+            List<TimeSheetEntryModel> timeSheets = new List<TimeSheetEntryModel>();
 
             string enterMoreTimeSheets;
 
@@ -71,7 +74,7 @@ namespace ConsoleUI
                     rawHoursWorked = Console.ReadLine();
                 }
 
-                TimeSheetEntry timeSheet = new TimeSheetEntry();
+                TimeSheetEntryModel timeSheet = new TimeSheetEntryModel();
                 timeSheet.HoursWorked = hoursWorked;
                 timeSheet.WorkDone = workDone;
                 timeSheets.Add(timeSheet);
