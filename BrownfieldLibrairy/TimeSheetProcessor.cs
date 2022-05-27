@@ -1,4 +1,6 @@
 ﻿using System;
+using BrownfieldLibrary.Models;
+
 namespace BrownfieldLibrary
 {
 	public static class TimeSheetProcessor

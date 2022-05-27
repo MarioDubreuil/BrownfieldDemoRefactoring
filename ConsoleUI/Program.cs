@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BrownfieldLibrary;
+using BrownfieldLibrary.Models;
 
 // Please note - THIS IS A BAD APPLICATION - DO NOT REPLICATE WHAT IT DOES
 // This application was designed to simulate a poorly-built application that

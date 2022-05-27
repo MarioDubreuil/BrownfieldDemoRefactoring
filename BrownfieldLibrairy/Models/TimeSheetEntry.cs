@@ -1,5 +1,5 @@
 ﻿using System;
-namespace BrownfieldLibrary
+namespace BrownfieldLibrary.Models
 {
 	public class TimeSheetEntry
 	{
